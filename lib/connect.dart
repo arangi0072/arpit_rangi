@@ -2040,12 +2040,9 @@ class _MyConnectPageState extends State<MyConnectPage> {
                       ),
                       child: InkWell(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                const MyConnectPage()),
-                          );
+                          final Uri uri =
+                          Uri.parse("https://github.com/arangi0072/arpit_rangi");
+                          launchUrl(uri);
                         },
                         child: Container(
                           // width: 260,
