@@ -41,53 +41,53 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyADbr2QGFp-hdZEvtbp7Jm8f-U_Ecs8eMk',
-    appId: '1:278803359802:web:14cb22db9b063f570ded03',
-    messagingSenderId: '278803359802',
-    projectId: 'arpit-rangi',
-    authDomain: 'arpit-rangi.firebaseapp.com',
-    databaseURL: 'https://arpit-rangi-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'arpit-rangi.appspot.com',
-    measurementId: 'G-BLMW958H12',
+    apiKey: '',
+    appId: '',
+    messagingSenderId: '',
+    projectId: '',
+    authDomain: '',
+    databaseURL: '',
+    storageBucket: '',
+    measurementId: '',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCpogDW3aoyRbeGKFE8NAJx9p3ofSuqTPo',
-    appId: '1:278803359802:android:7ea74c22887a524b0ded03',
-    messagingSenderId: '278803359802',
-    projectId: 'arpit-rangi',
-    databaseURL: 'https://arpit-rangi-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'arpit-rangi.appspot.com',
+    apiKey: '',
+    appId: '',
+    messagingSenderId: '',
+    projectId: '',
+    databaseURL: '',
+    storageBucket: '',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDNl6bTsCMOVgcsl_YadQW8NnQEMTMj9so',
-    appId: '1:278803359802:ios:7a83b64b87dc4a6c0ded03',
-    messagingSenderId: '278803359802',
-    projectId: 'arpit-rangi',
-    databaseURL: 'https://arpit-rangi-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'arpit-rangi.appspot.com',
-    iosBundleId: 'arpit.rangi.arpitRangi',
+    apiKey: '',
+    appId: '',
+    messagingSenderId: '',
+    projectId: '',
+    databaseURL: '',
+    storageBucket: '',
+    iosBundleId: '',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDNl6bTsCMOVgcsl_YadQW8NnQEMTMj9so',
-    appId: '1:278803359802:ios:7a83b64b87dc4a6c0ded03',
-    messagingSenderId: '278803359802',
-    projectId: 'arpit-rangi',
-    databaseURL: 'https://arpit-rangi-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'arpit-rangi.appspot.com',
-    iosBundleId: 'arpit.rangi.arpitRangi',
+    apiKey: '',
+    appId: '',
+    messagingSenderId: '',
+    projectId: '',
+    databaseURL: '',
+    storageBucket: '',
+    iosBundleId: '',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyADbr2QGFp-hdZEvtbp7Jm8f-U_Ecs8eMk',
-    appId: '1:278803359802:web:20b3f71ca1dafa900ded03',
-    messagingSenderId: '278803359802',
-    projectId: 'arpit-rangi',
-    authDomain: 'arpit-rangi.firebaseapp.com',
-    databaseURL: 'https://arpit-rangi-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'arpit-rangi.appspot.com',
-    measurementId: 'G-60EBKHBGV6',
+    apiKey: '',
+    appId: '',
+    messagingSenderId: '',
+    projectId: '',
+    authDomain: '',
+    databaseURL: '',
+    storageBucket: '',
+    measurementId: '',
   );
 }
