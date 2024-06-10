@@ -27,7 +27,7 @@ class _MyProjectsPageState extends State<MyProjectsPage> {
   Query databaseReference = FirebaseDatabase.instanceFor(
       app: Firebase.app(),
       databaseURL:
-      'https://arpit-rangi-default-rtdb.asia-southeast1.firebasedatabase.app/')
+      'database_url')
       .reference()
       .child('projects')
       .orderByKey();
