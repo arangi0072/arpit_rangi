@@ -736,8 +736,7 @@ class _MyConnectPageState extends State<MyConnectPage> {
                                   child: Padding(
                                     padding: const EdgeInsets.only(
                                       left: 10.0,),
-                                    child: Expanded(
-                                      child: TextField(
+                                    child: TextField(
                                         cursorColor: Colors.grey,
                                         maxLines: 5000,
                                         controller: _MessageController,
@@ -752,7 +751,6 @@ class _MyConnectPageState extends State<MyConnectPage> {
                                               color: Colors.grey),
                                         ),
                                       ),
-                                    ),
                                   ),
                                 ),
                               ),
@@ -1504,8 +1502,8 @@ class _MyConnectPageState extends State<MyConnectPage> {
                                               child: Padding(
                                                 padding: const EdgeInsets.only(
                                                   left: 10.0,),
-                                                child: Expanded(
-                                                  child: TextField(
+                                                child:
+                                                TextField(
                                                     cursorColor: Colors.grey,
                                                     maxLines: 5000,
                                                     controller: _MessageController,
@@ -1519,7 +1517,6 @@ class _MyConnectPageState extends State<MyConnectPage> {
                                                           fontSize: 16.0,
                                                           color: Colors.grey),
                                                     ),
-                                                  ),
                                                 ),
                                               ),
                                             ),
