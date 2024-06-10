@@ -1,0 +1,49 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "arpit-rangi",
+          "appId": "1:278803359802:android:7ea74c22887a524b0ded03",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "arpit-rangi",
+          "appId": "1:278803359802:ios:7a83b64b87dc4a6c0ded03",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "macos": {
+        "default": {
+          "projectId": "arpit-rangi",
+          "appId": "1:278803359802:ios:7a83b64b87dc4a6c0ded03",
+          "uploadDebugSymbols": false,
+          "fileOutput": "macos/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "arpit-rangi",
+          "configurations": {
+            "android": "1:278803359802:android:7ea74c22887a524b0ded03",
+            "ios": "1:278803359802:ios:7a83b64b87dc4a6c0ded03",
+            "macos": "1:278803359802:ios:7a83b64b87dc4a6c0ded03",
+            "web": "1:278803359802:web:14cb22db9b063f570ded03",
+            "windows": "1:278803359802:web:20b3f71ca1dafa900ded03"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
