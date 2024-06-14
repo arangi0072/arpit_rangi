@@ -824,16 +824,16 @@ class _MyConnectPageState extends State<MyConnectPage> {
                                     );
                                     await Firebase.initializeApp(
                                         options: const FirebaseOptions(
-                                          apiKey: 'AIzaSyADbr2QGFp-hdZEvtbp7Jm8f-U_Ecs8eMk',
-                                          appId: '1:278803359802:web:14cb22db9b063f570ded03',
-                                          messagingSenderId: '278803359802',
-                                          projectId: 'arpit-rangi',
-                                          storageBucket: 'arpit-rangi.appspot.com',
+                                          apiKey: '',
+                                          appId: '',
+                                          messagingSenderId: '',
+                                          projectId: '',
+                                          storageBucket: '',
                                         ));
                                     final databaseReference = FirebaseDatabase.instanceFor(
                                         app: Firebase.app(),
                                         databaseURL:
-                                        'https://arpit-rangi-default-rtdb.asia-southeast1.firebasedatabase.app/').reference().child("msg");
+                                        'database_url').reference().child("msg");
                                     databaseReference.push().set({
                                       'name': (_NameController.text.trim()),
                                       'subject': _SubjectController.text.trim(),
@@ -1591,16 +1591,16 @@ class _MyConnectPageState extends State<MyConnectPage> {
                                                 );
                                                 await Firebase.initializeApp(
                                                     options: const FirebaseOptions(
-                                                      apiKey: 'AIzaSyADbr2QGFp-hdZEvtbp7Jm8f-U_Ecs8eMk',
-                                                      appId: '1:278803359802:web:14cb22db9b063f570ded03',
-                                                      messagingSenderId: '278803359802',
-                                                      projectId: 'arpit-rangi',
-                                                      storageBucket: 'arpit-rangi.appspot.com',
+                                                      apiKey: '',
+                                                      appId: '',
+                                                      messagingSenderId: '',
+                                                      projectId: '',
+                                                      storageBucket: '',
                                                     ));
                                                 final databaseReference = FirebaseDatabase.instanceFor(
                                                     app: Firebase.app(),
                                                     databaseURL:
-                                                    'https://arpit-rangi-default-rtdb.asia-southeast1.firebasedatabase.app/').reference().child("msg");
+                                                    'database_url').reference().child("msg");
                                                 databaseReference.push().set({
                                                   'name': (_NameController.text.trim()),
                                                   'subject': _SubjectController.text.trim(),

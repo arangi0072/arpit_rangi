@@ -12,11 +12,11 @@ import 'blogs.dart';
 Future<void> main() async {
   await Firebase.initializeApp(
       options: const FirebaseOptions(
-    apiKey: 'AIzaSyADbr2QGFp-hdZEvtbp7Jm8f-U_Ecs8eMk',
-    appId: '1:278803359802:web:14cb22db9b063f570ded03',
-    messagingSenderId: '278803359802',
-    projectId: 'arpit-rangi',
-    storageBucket: 'arpit-rangi.appspot.com',
+    apiKey: '',
+    appId: '',
+    messagingSenderId: '',
+    projectId: '',
+    storageBucket: '',
   ));
   runApp(const MyApp());
 }
