@@ -7,6 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'about.dart';
+import 'blogs.dart';
 import 'connect.dart';
 
 class MyEducationPage extends StatefulWidget {
@@ -87,6 +88,18 @@ class _MyEducationPageState extends State<MyEducationPage> {
                               style: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 18))),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                  const MyBlogsPage()),
+                            );
+                          },
+                          child: const Text("Blogs",
+                              style: TextStyle(
+                                  color: Colors.grey, fontSize: 18))),
                       TextButton(
                           onPressed: () {
                             Navigator.push(
@@ -269,6 +282,18 @@ class _MyEducationPageState extends State<MyEducationPage> {
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 18))),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                const MyBlogsPage()),
+                          );
+                        },
+                        child: const Text("Blogs",
+                            style: TextStyle(
+                                color: Colors.grey, fontSize: 18))),
                     TextButton(
                         onPressed: () {
                           Navigator.push(

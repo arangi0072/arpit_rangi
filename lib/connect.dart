@@ -11,6 +11,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'about.dart';
+import 'blogs.dart';
 
 class MyConnectPage extends StatefulWidget {
   const MyConnectPage({super.key});
@@ -106,6 +107,18 @@ class _MyConnectPageState extends State<MyConnectPage> {
                               style: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 18))),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                  const MyBlogsPage()),
+                            );
+                          },
+                          child: const Text("Blogs",
+                              style: TextStyle(
+                                  color: Colors.grey, fontSize: 18))),
                       TextButton(
                           onPressed: () {},
                           child: const Text("Connect",
@@ -286,6 +299,18 @@ class _MyConnectPageState extends State<MyConnectPage> {
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 18))),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                const MyBlogsPage()),
+                          );
+                        },
+                        child: const Text("Blogs",
+                            style: TextStyle(
+                                color: Colors.grey, fontSize: 18))),
                     TextButton(
                         onPressed: () {},
                         child: const Text("Connect",

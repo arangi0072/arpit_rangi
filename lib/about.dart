@@ -6,6 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'blogs.dart';
 import 'connect.dart';
 import 'main.dart';
 
@@ -88,6 +89,18 @@ class _MyAboutPageState extends State<MyAboutPage> {
                               style: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 18))),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                  const MyBlogsPage()),
+                            );
+                          },
+                          child: const Text("Blogs",
+                              style: TextStyle(
+                                  color: Colors.grey, fontSize: 18))),
                       TextButton(
                           onPressed: () {
                             Navigator.push(
@@ -271,6 +284,18 @@ class _MyAboutPageState extends State<MyAboutPage> {
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 18))),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                const MyBlogsPage()),
+                          );
+                        },
+                        child: const Text("Blogs",
+                            style: TextStyle(
+                                color: Colors.grey, fontSize: 18))),
                     TextButton(
                         onPressed: () {
                           Navigator.push(

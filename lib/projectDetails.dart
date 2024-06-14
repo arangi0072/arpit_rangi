@@ -9,6 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'about.dart';
+import 'blogs.dart';
 
 class MyProjectDetailPage extends StatefulWidget {
   const MyProjectDetailPage(
@@ -168,6 +169,18 @@ class _MyProjectDetailPageState extends State<MyProjectDetailPage> {
                                 child: const Text("Projects",
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold))),
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                        const MyBlogsPage()),
+                                  );
+                                },
+                                child: const Text("Blogs",
+                                    style: TextStyle(
+                                        color: Colors.grey, fontSize: 18))),
                             TextButton(
                                 onPressed: () {
                                   Navigator.push(
@@ -360,6 +373,18 @@ class _MyProjectDetailPageState extends State<MyProjectDetailPage> {
                               child: const Text("Projects",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold))),
+                          TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                      const MyBlogsPage()),
+                                );
+                              },
+                              child: const Text("Blogs",
+                                  style: TextStyle(
+                                      color: Colors.grey, fontSize: 18))),
                           TextButton(
                               onPressed: () {
                                 Navigator.push(

@@ -7,6 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'blogs.dart';
+
 Future<void> main() async {
   await Firebase.initializeApp(
       options: const FirebaseOptions(
@@ -111,6 +113,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                     );
                                   },
                                   child: const Text("Projects",
+                                      style: TextStyle(
+                                          color: Colors.grey, fontSize: 18))),
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const MyBlogsPage()),
+                                    );
+                                  },
+                                  child: const Text("Blogs",
                                       style: TextStyle(
                                           color: Colors.grey, fontSize: 18))),
                               TextButton(
@@ -239,6 +253,18 @@ class _MyHomePageState extends State<MyHomePage> {
                                   );
                                 },
                                 child: const Text("Projects",
+                                    style: TextStyle(
+                                        color: Colors.grey, fontSize: 18))),
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                        const MyBlogsPage()),
+                                  );
+                                },
+                                child: const Text("Blogs",
                                     style: TextStyle(
                                         color: Colors.grey, fontSize: 18))),
                             TextButton(
