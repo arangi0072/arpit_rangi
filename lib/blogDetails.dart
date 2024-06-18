@@ -30,72 +30,204 @@ class _MyBlogDetailPageState extends State<MyBlogDetailPage> {
   bool isHoveredLinkedIn = false;
   bool isHoveredGitHub = false;
 
-  void _showImagePopup(int initialIndex, List<String> imageUrls) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return Dialog(
-          backgroundColor: Colors.transparent,
-          insetPadding: EdgeInsets.all(10),
-          child: Container(
-            child: PageView.builder(
-              controller: PageController(initialPage: initialIndex),
-              itemCount: imageUrls.length,
-              itemBuilder: (context, index) {
-                return Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Image.network(
-                        imageUrls[index],
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                    Positioned(
-                      left: 10,
-                      child: IconButton(
-                        icon: Icon(Icons.arrow_back, color: Colors.white),
-                        onPressed: () {
-                          if (index > 0) {
-                            Navigator.of(context).pop();
-                            _showImagePopup(index - 1, imageUrls);
-                          }
-                        },
-                      ),
-                    ),Positioned(
-                      left: 10,
-                      top: 10,
-                      child: IconButton(
-                        icon: const Icon(Icons.close, color: Colors.white),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                    ),
-                    Positioned(
-                      right: 10,
-                      child: IconButton(
-                        icon: const Icon(Icons.arrow_forward, color: Colors.white),
-                        onPressed: () {
-                          if (index < imageUrls.length - 1) {
-                            Navigator.of(context).pop();
-                            _showImagePopup(index + 1, imageUrls);
-                          }
-                        },
-                      ),
-                    ),
-                  ],
-                );
-              },
-            ),
-          ),
-        );
-      },
+
+  List<Widget> parseTextAndCode(String input) {
+    List<Widget> widgets = [];
+    RegExp regex = RegExp(r'(text-start|code-language|code-start|code-end)\s*(.*?)(?=(text-start|code-language|code-start|code-end|\Z))', dotAll: true);
+    final matches = regex.allMatches(input);
+
+    String? currentLanguage;
+    widgets.add(SizedBox(height: 30,),);
+    widgets.add(SizedBox(
+      width: MediaQuery.of(context).size.width,
+      height: 250,
+      child: Center(
+          child: Image.network(
+            widget.data["logo"].toString(),
+            fit: BoxFit.fitHeight,
+          )),
+    ),);
+    widgets.add(SizedBox(height: 30,),);
+    widgets.add(Text(
+      widget.data["title"].toString(),
+      style: const TextStyle(
+          fontSize: 26,
+          color: Colors.white,
+          fontWeight: FontWeight.bold),
+      textAlign: TextAlign.center,
+    ),);
+    widgets.add(SizedBox(height: 20,),);
+    widgets.add(Container(
+      width: double.infinity,
+      height: 1,
+      color: const Color.fromRGBO(61, 61, 61, 1.0),
+    ),);
+    widgets.add(SizedBox(height: 20,),);
+    widgets.add(Padding(
+      padding: const EdgeInsets.only(left: 8.0),
+      child: SizedBox(
+        width:
+        MediaQuery.of(context).size.width * .95,
+        child: const Text(
+          "Media : ",
+          style: TextStyle(
+              fontSize: 22,
+              color: Colors.white,
+              fontWeight: FontWeight.bold),
+          textAlign: TextAlign.start,
+        ),
+      ),
+    ),);
+    widgets.add(SizedBox(height: 30,),);
+    widgets.add(
+      Image.network(widget.data["media"].toString()),
     );
+    widgets.add(SizedBox(height: 20,),);
+    widgets.add(Container(
+      width: double.infinity,
+      height: 1,
+      color: const Color.fromRGBO(61, 61, 61, 1.0),
+    ),);
+    widgets.add(SizedBox(height: 20,),);
+    widgets.add(Padding(
+      padding: const EdgeInsets.only(left: 8.0),
+      child: SizedBox(
+        width:
+        MediaQuery.of(context).size.width * .95,
+        child: const Text(
+          "Link : ",
+          style: TextStyle(
+              fontSize: 22,
+              color: Colors.white,
+              fontWeight: FontWeight.bold),
+          textAlign: TextAlign.start,
+        ),
+      ),
+    ),);
+    widgets.add(Padding(
+      padding: const EdgeInsets.only(left: 8.0, top: 10),
+      child: SizedBox(
+        width:
+        MediaQuery.of(context).size.width * .95,
+        child: InkWell(
+          onTap: (){
+            final Uri uri = Uri.parse(
+                widget.data["link"].toString());
+            launchUrl(uri);
+          },
+          child: Text(
+            widget.data["link"].toString(),
+            style: const TextStyle(
+              fontSize: 22,
+              color: Colors.blue,
+              fontStyle: FontStyle.italic,
+              decoration: TextDecoration.underline,
+              decorationColor: Colors.blue,
+            ),
+            textAlign: TextAlign.start,
+          ),
+        ),
+      ),
+    ),);
+    widgets.add(SizedBox(height: 20,),);
+    widgets.add(Container(
+      width: double.infinity,
+      height: 1,
+      color: const Color.fromRGBO(61, 61, 61, 1.0),
+    ),);
+    widgets.add(SizedBox(height: 20,),);
+
+    widgets.add(
+      Padding(
+        padding: const EdgeInsets.only(left: 8.0),
+        child: SizedBox(
+          width:
+          MediaQuery.of(context).size.width * .95,
+          child: const Text(
+            "Info : ",
+            style: TextStyle(
+                fontSize: 22,
+                color: Colors.white,
+                fontWeight: FontWeight.bold),
+            textAlign: TextAlign.start,
+          ),
+        ),
+      ),
+    );
+    if (matches.length == 0){
+
+      widgets.add(Padding(
+        padding: const EdgeInsets.only(left: 8.0),
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width * .95,
+          child: Text(
+            input.substring(10).replaceAll("\\n", "\n"),
+            style: const TextStyle(
+                fontSize: 16,
+                color: Colors.white,),
+          ),
+        ),
+      ),);
+      widgets.add(
+        SizedBox(height: 30,),
+      );
+      widgets.add(
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0, top: 10),
+          child: Text(
+            DateFormat('MMMM d, yyyy – hh:mm a').format((widget.data["time"] as Timestamp).toDate()),
+            style: const TextStyle(fontSize: 14, color: Colors.grey, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      );
+      return widgets;
+    }
+
+    for (final match in matches) {
+      String marker = match.group(1)!;
+      String content = match.group(2)?.trim() ?? "";
+
+      switch (marker) {
+        case 'text-start':
+          widgets.add(Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width * .95,
+              child: SelectableText(
+                content.replaceAll("\\n", "\n"),
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
+            ),
+          ));
+          break;
+        case 'code-start':
+          widgets.add(CodeViewer(
+            code: content.replaceAll("\\n", "\n"),
+            language: currentLanguage ?? "plaintext",
+          ));
+          break;
+        case 'code-language':
+          currentLanguage = content;
+          break;
+        case 'code-end':
+          break;
+      }
+    }
+    widgets.add(
+      Padding(
+        padding: const EdgeInsets.only(left: 8.0, top: 10),
+        child: Text(
+          DateFormat('MMMM d, yyyy – hh:mm a').format((widget.data["time"] as Timestamp).toDate()),
+          style: const TextStyle(fontSize: 14, color: Colors.grey, fontWeight: FontWeight.bold),
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
+
+    return widgets;
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -554,326 +686,13 @@ class _MyBlogDetailPageState extends State<MyBlogDetailPage> {
                               ? Column(
                             // mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(height: 30,),
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width,
-                                height: 250,
-                                child: Center(
-                                    child: Image.network(
-                                      widget.data["logo"].toString(),
-                                      fit: BoxFit.fitHeight,
-                                    )),
-                              ),
-                              SizedBox(
-                                height: 30,
-                              ),
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width * .95,
-                                child: Text(
-                                  widget.data["title"].toString(),
-                                  style: const TextStyle(
-                                      fontSize: 26,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              Container(
-                                width: double.infinity,
-                                height: 1,
-                                color: const Color.fromRGBO(61, 61, 61, 1.0),
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
-                                child: SizedBox(
-                                  width:
-                                  MediaQuery.of(context).size.width * .95,
-                                  child: const Text(
-                                    "Media : ",
-                                    style: TextStyle(
-                                        fontSize: 22,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
-                                    textAlign: TextAlign.start,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 30,
-                              ),
-                              Image.network(widget.data["media"].toString(),),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              Container(
-                                width: double.infinity,
-                                height: 1,
-                                color: const Color.fromRGBO(61, 61, 61, 1.0),
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
-                                child: SizedBox(
-                                  width:
-                                  MediaQuery.of(context).size.width * .95,
-                                  child: const Text(
-                                    "Link : ",
-                                    style: TextStyle(
-                                        fontSize: 22,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
-                                    textAlign: TextAlign.start,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8.0, top: 10),
-                                child: SizedBox(
-                                  width:
-                                  MediaQuery.of(context).size.width * .95,
-                                  child: InkWell(
-                                    onTap: (){
-                                      final Uri uri = Uri.parse(
-                                          widget.data["link"].toString());
-                                      launchUrl(uri);
-                                    },
-                                    child: Text(
-                                      widget.data["link"].toString(),
-                                      style: const TextStyle(
-                                        fontSize: 22,
-                                        color: Colors.blue,
-                                        fontStyle: FontStyle.italic,
-                                        decoration: TextDecoration.underline,
-                                        decorationColor: Colors.blue,
-                                      ),
-                                      textAlign: TextAlign.start,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              Container(
-                                width: double.infinity,
-                                height: 1,
-                                color: const Color.fromRGBO(61, 61, 61, 1.0),
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
-                                child: SizedBox(
-                                  width:
-                                  MediaQuery.of(context).size.width * .95,
-                                  child: const Text(
-                                    "Info : ",
-                                    style: TextStyle(
-                                        fontSize: 22,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
-                                    textAlign: TextAlign.start,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8.0, top: 10),
-                                child: SizedBox(
-                                  width:
-                                  MediaQuery.of(context).size.width * .95,
-                                  child: Text(
-                                    widget.data["info"].toString().replaceAll("\\n", "\n"),
-                                    style: const TextStyle(
-                                        fontSize: 22,
-                                        color: Colors.grey,
-                                        fontWeight: FontWeight.normal),
-                                    textAlign: TextAlign.start,
-                                  ),
-                                ),
-                              ),
-                              widget.data["code"].toString() != "null" ? Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: CodeViewer(code: widget.data["code"].toString().replaceAll("\\n", "\n"), language: widget.data["codeLang"].toString()),
-                              ) : SizedBox(),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8.0, top: 10),
-                                child: Text(
-                                  DateFormat('MMMM d, yyyy – hh:mm a').format((widget.data["time"] as Timestamp).toDate()),
-                                  style: const TextStyle(fontSize: 14, color: Colors.grey, fontWeight: FontWeight.bold),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ],
+                            children:
+                            parseTextAndCode(widget.data["info"].toString()),
                           )
                               : Column(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              SizedBox(height: 30,),
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width,
-                                height: 250,
-                                child: Center(
-                                    child: Image.network(
-                                      widget.data["logo"].toString(),
-                                      fit: BoxFit.fitHeight,
-                                    )),
-                              ),
-                              SizedBox(
-                                height: 30,
-                              ),
-                              Text(
-                                widget.data["title"].toString(),
-                                style: const TextStyle(
-                                    fontSize: 26,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                                textAlign: TextAlign.center,
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              Container(
-                                width: double.infinity,
-                                height: 1,
-                                color: const Color.fromRGBO(61, 61, 61, 1.0),
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
-                                child: SizedBox(
-                                  width:
-                                  MediaQuery.of(context).size.width * .95,
-                                  child: const Text(
-                                    "Media : ",
-                                    style: TextStyle(
-                                        fontSize: 22,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
-                                    textAlign: TextAlign.start,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 30,
-                              ),
-                              Image.network(widget.data["media"].toString()),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              Container(
-                                width: double.infinity,
-                                height: 1,
-                                color: const Color.fromRGBO(61, 61, 61, 1.0),
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
-                                child: SizedBox(
-                                  width:
-                                  MediaQuery.of(context).size.width * .95,
-                                  child: const Text(
-                                    "Link : ",
-                                    style: TextStyle(
-                                        fontSize: 22,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
-                                    textAlign: TextAlign.start,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8.0, top: 10),
-                                child: SizedBox(
-                                  width:
-                                  MediaQuery.of(context).size.width * .95,
-                                  child: InkWell(
-                                    onTap: (){
-                                      final Uri uri = Uri.parse(
-                                          widget.data["link"].toString());
-                                      launchUrl(uri);
-                                    },
-                                    child: Text(
-                                      widget.data["link"].toString(),
-                                      style: const TextStyle(
-                                        fontSize: 22,
-                                        color: Colors.blue,
-                                        fontStyle: FontStyle.italic,
-                                        decoration: TextDecoration.underline,
-                                        decorationColor: Colors.blue,
-                                      ),
-                                      textAlign: TextAlign.start,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              Container(
-                                width: double.infinity,
-                                height: 1,
-                                color: const Color.fromRGBO(61, 61, 61, 1.0),
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
-                                child: SizedBox(
-                                  width:
-                                  MediaQuery.of(context).size.width * .95,
-                                  child: const Text(
-                                    "Info : ",
-                                    style: TextStyle(
-                                        fontSize: 22,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
-                                    textAlign: TextAlign.start,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8.0, top: 10),
-                                child: SizedBox(
-                                  width:
-                                  MediaQuery.of(context).size.width * .95,
-                                  child: Text(
-                                    widget.data["info"].toString().replaceAll("\\n", "\n"),
-                                    style: const TextStyle(
-                                        fontSize: 22,
-                                        color: Colors.grey,
-                                        fontWeight: FontWeight.normal),
-                                    textAlign: TextAlign.start,
-                                  ),
-                                ),
-                              ),
-                              widget.data["code"].toString() != "null" ? Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: CodeViewer(code: widget.data["code"].toString().replaceAll("\\n", "\n"), language: widget.data["codeLang"].toString()),
-                              ) : SizedBox(),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8.0, top: 10),
-                                child: Text(
-                                  DateFormat('MMMM d, yyyy – hh:mm a').format((widget.data["time"] as Timestamp).toDate()),
-                                  style: const TextStyle(fontSize: 14, color: Colors.grey, fontWeight: FontWeight.bold),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ],
+                            children:
+                            parseTextAndCode(widget.data["info"].toString()),
                           ),
                         ),
                         const SizedBox(

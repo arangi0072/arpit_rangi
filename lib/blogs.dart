@@ -579,7 +579,7 @@ class _MyBlogsPageState extends State<MyBlogsPage> {
                                 }
 
 
-                                print(snapshot.data?.docs.length);
+                                // print(snapshot.data?.docs.length);
                                 return LayoutBuilder(
                                     builder: (context, constraints) {
                                       return Padding(
@@ -709,7 +709,7 @@ class _CardItemState extends State<CardItem> {
   @override
   Widget build(BuildContext context) {
     int n = widget.height ?  widget.itemData.length : widget.itemData.length ~/ 3 ;
-    print(widget.itemData);
+    // print(widget.itemData);
     return
       SingleChildScrollView(
         child: SizedBox(
